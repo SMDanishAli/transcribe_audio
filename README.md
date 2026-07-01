@@ -28,7 +28,7 @@ _How it works:_
 
 - We run open ai whisper model to transcribe. The `--model` can be changed but defaults to `small` which is best suited for normal conversations
 - I considered using `pyDub` to do manual chunking for long audios. There are a few problems here:
-    - It consumes too much memory because file streams needs to be copies to RAM
+    - It consumes too much memory because file stream needs to be copied to the RAM
     - Arbitrary chunking (for e.g., 15 mins slices) causes whisper to hallucinate - if you cut mid-sentence, the loss of context will yield duplicate results.
     - Manual chunking leads to complexity when we are trying introduce concurrency or parallelism.
 - Instead, we use `faster_whisper`. This library extends whisper functionality by chunking audios by detecting audio activity:
